@@ -1,0 +1,26 @@
+{
+  "name": "notification-api",
+  "version": "1.0.0",
+  "description": "CF sample application API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkretz/notification-api.git"
+  },
+  "author": "Mathis Kretz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mkretz/notification-api/issues"
+  },
+  "homepage": "https://github.com/mkretz/notification-api#readme",
+  "dependencies": {
+    "cfenv": "^1.0.4",
+    "mongoose": "^4.13.9",
+    "restify": "^6.3.4",
+    "restify-plugins": "^1.6.0"
+  }
+}
