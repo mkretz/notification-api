@@ -6,6 +6,16 @@ var appEnv = cfenv.getAppEnv()
 var packageJson = require('./package.json');
 var mongoose = require('mongoose');
 var Notification = require('./notification/model.js').Notification;
+var corsMiddleware = require('restify-cors-middleware')
+
+var cors = corsMiddleware({
+  origins: ['*'],
+  allowHeaders: [],
+  exposeHeaders: []
+});
+
+server.pre(cors.preflight);
+server.use(cors.actual);
 
 server.use(bodyParser());
 
