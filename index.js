@@ -7,6 +7,27 @@ var packageJson = require('./package.json');
 var mongoose = require('mongoose');
 var Notification = require('./notification/model.js').Notification;
 var corsMiddleware = require('restify-cors-middleware')
+var amqp = require('amqplib');
+
+function sendJsonMessage (message) {
+    return amqp.connect(appEnv.getServiceURL('notification-mq'))
+        .then(function (conn) {
+            return conn.createChannel()
+                .then(function (ch) {
+                    return ch.assertQueue("notifications", {durable: false})
+                        .then(function () {
+                            ch.sendToQueue("notifications", Buffer.from(JSON.stringify(message)));
+                            return ch.close();
+                        })
+                        .catch(console.warn);
+                })
+                .finally(function () {
+                    return conn.close();
+                })
+
+        })
+        .catch(console.warn)
+}
 
 var cors = corsMiddleware({
   origins: ['*'],
@@ -41,6 +62,7 @@ server.post('/notification', function (req,res,next) {
     notification.text = req.body.text;
     notification.save()
         .then(function (savedNotification) {
+            sendJsonMessage(savedNotification);
             return res.send(204,savedNotification);
         })
 })

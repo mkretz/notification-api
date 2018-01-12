@@ -7,3 +7,4 @@ applications:
   health-check-type: http
   services:
   - notification-db
+  - notification-mq
