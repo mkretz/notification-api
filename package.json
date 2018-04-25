@@ -1,6 +1,6 @@
 {
   "name": "notification-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CF sample application API",
   "main": "index.js",
   "scripts": {

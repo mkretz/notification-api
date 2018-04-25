@@ -5,6 +5,8 @@ applications:
   disk_quota: 128M
   memory: 128M
   health-check-type: http
+  routes:
+  - route: notification-api.scapp.io
   services:
   - notification-db
   - notification-mq
