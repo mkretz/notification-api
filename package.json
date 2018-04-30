@@ -1,6 +1,6 @@
 {
   "name": "notification-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CF sample application API",
   "main": "index.js",
   "scripts": {
@@ -24,5 +24,9 @@
     "restify": "^6.3.4",
     "restify-cors-middleware": "^1.1.0",
     "restify-plugins": "^1.6.0"
+  },
+  "engines": {
+    "node": "6.13.1",
+    "npm": "5.1.0"
   }
 }
