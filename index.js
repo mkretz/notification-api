@@ -73,6 +73,13 @@ server.del('/notification/:notificationid', function (req,res,next) {
     })
 })
 
+if (process.env.LOADER_IO_KEY) {
+    server.get('/' + process.env.LOADER_IO_KEY, function (req,res,next) {
+        res.setHeader('content-type', 'text/plain');
+        return res.send(process.env.LOADER_IO_KEY);
+    })
+}
+
 mongoose.connect(appEnv.getServiceURL('notification-db'));
 server.listen(appEnv.port,appEnv.bind, function () {
     console.log('server listening at %s on port %s', appEnv.bind, appEnv.port);
